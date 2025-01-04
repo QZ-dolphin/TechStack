@@ -1,23 +1,15 @@
 # sub_vue
 
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
+个人技术栈前端展示页面
 
 ## Project Setup
-
+初始化安装
 ```sh
 npm install
 ```
 
 ### Compile and Hot-Reload for Development
-
+运行
 ```sh
 npm run dev
 ```
