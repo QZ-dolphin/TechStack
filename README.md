@@ -1,9 +1,7 @@
-# sub_vue
-
-个人技术栈前端展示页面
+# 个人技术栈前端展示页面
 ![demo](image.png)
-## Project Setup
-初始化安装
+
+## 初始化安装
 ```sh
 npm install
 ```
