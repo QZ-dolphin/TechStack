@@ -3,7 +3,9 @@
 
 ## 初始化安装
 ```sh
-npm install
+npm set registry http://registry.npmmirror.com # 可以设置镜像源，加快依赖包下载
+
+npm install # 安装依赖包
 ```
 如果没有nodejs，请[下载安装](https://nodejs.org/zh-cn)
 ## 运行
