@@ -14,4 +14,13 @@ export default [
 
   js.configs.recommended,
   ...pluginVue.configs['flat/essential'],
+
+  {
+    name: 'app/env-setup',
+    languageOptions: {
+      globals: {
+        process: 'readonly', // 添加对 process 的支持
+      },
+    },
+  },
 ]

@@ -17,6 +17,7 @@
   let mm;
 
   const update = () => {
+    // console.log(content.value);
     const { root } = transformer.transform(content.value);
     mm.setData(root);
     mm.fit();
@@ -27,7 +28,7 @@
       const response = await fetch('/1.txt');
       if (response.ok) {
         content.value = await response.text();
-        console.log(content.value)
+        // console.log(content.value)
       } else {
         console.error('Failed to load file:', response.statusText);
       }

@@ -2,6 +2,9 @@
   <div class="title">
     Personal Tech Stack
   </div>
+  <div style="color: gray; margin-left: 25px;">
+    &#9824; Recent Update Time: {{ updateTime }}
+  </div>
   <div>
     <component :is="component" v-model="showCtx"></component>
   </div>
@@ -16,14 +19,16 @@ import { ref, computed } from 'vue';
 import VueComposition from './components/vue-composition.vue';
 import { Edit, Check } from '@element-plus/icons-vue'
 
-
+// const GO_API_URL = process.env.VUE_APP_GO_API_URL
 const type = ref('composition');
+const updateTime = '2025/01/05 23:42';
 const component = computed(() => ({
   composition: VueComposition,
 }[type.value]));
 
 const showCtx = ref(false);
-
+// console.log(GO_API_URL)
+console.log(import.meta.env.VITE_GO_API_URL);
 </script>
 
 <style scoped>
@@ -41,9 +46,9 @@ p {
 
 .title {
   /* width: 300px; */
-  margin: 20px 20px;
+  margin: 20px 20px 0px 20px;
   font-size: 30px;
-  font-family: fantasy, cursive, "Papyrus", serif;
+  /* font-family: 'CustomFont', Arial, sans-serif; */
   height: 5vh;
   background-image: -webkit-linear-gradient(left, blue, #66ffff 10%, #cc00ff 20%, #CC00CC 30%, #CCCCFF 40%, #00FFFF 50%, #CCCCFF 60%, #CC00CC 70%, #CC00FF 80%, #66FFFF 90%, blue 100%);
   background-clip: text; /* 标准属性 */
