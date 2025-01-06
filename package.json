@@ -17,6 +17,7 @@
     "@codemirror/theme-one-dark": "^6.1.2",
     "@codemirror/view": "^6.36.1",
     "@uiw/codemirror-theme-dracula": "^4.23.7",
+    "axios": "^1.7.9",
     "codemirror": "^6.0.1",
     "echarts": "^5.6.0",
     "element-plus": "^2.9.2",
