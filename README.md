@@ -12,6 +12,8 @@ Compile and Hot-Reload for Development
 ```sh
 npm run dev
 ```
+## 输入示例
+[输入示例.txt](./输入示例.txt)
 ## 同步脚本
 linux环境下运行gitpush.sh
 ```bash
