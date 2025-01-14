@@ -1,7 +1,7 @@
 // router/index.ts
 import { createRouter, createWebHistory, RouteRecordRaw, NavigationGuardNext, RouteLocationNormalized} from 'vue-router';
-import Login from '@/view/login/index.vue';
-import Edit from '@/view/editpanel/index.vue';
+import Login from '@/view/Login/LoginIndex.vue';
+import Edit from '@/view/Edit/EditIndex.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {

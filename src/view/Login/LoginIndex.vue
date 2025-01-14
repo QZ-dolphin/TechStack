@@ -1,4 +1,3 @@
-<!-- view/login/index.vue -->
 <template>
   <div class="loginbox">
     <my_title style="margin: 0px 20px 15px 20px;" />
