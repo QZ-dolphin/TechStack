@@ -1,5 +1,5 @@
 # 个人技术栈前端展示页面
-![demo](image-1.png)
+![demo](image.png)
 ## 初始化安装
 ```sh
 npm set registry http://registry.npmmirror.com # 可以设置镜像源，加快依赖包下载
