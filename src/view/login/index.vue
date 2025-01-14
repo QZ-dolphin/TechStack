@@ -1,28 +1,32 @@
+<!-- view/login/index.vue -->
 <template>
-  <div class="login-container">
-    <el-input class="input-field" v-model="username" placeholder="请输入用户名" style="margin-top: 10px;" />
-    <el-input class="input-field" v-model="password" type="password" placeholder="请输入密码" show-password />
-    <el-button type="primary" @click="login">
-      登录<el-icon class="el-icon--right">
-        <Finished />
-      </el-icon>
-    </el-button>
+  <div class="loginbox">
+    <my_title style="margin: 0px 20px 15px 20px;" />
+    <div class="login-container">
+      <el-input class="input-field" v-model="username" placeholder="请输入用户名" style="margin-top: 10px;" />
+      <el-input class="input-field" v-model="password" type="password" placeholder="请输入密码" show-password />
+      <el-button type="primary" @click="login">
+        登录<el-icon class="el-icon--right">
+          <Finished />
+        </el-icon>
+      </el-button>
+    </div>
   </div>
 
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { Finished } from '@element-plus/icons-vue'
-import { ElMessage, ElMessageBox } from 'element-plus'
+import { ref, onMounted, onUnmounted } from 'vue';
+import { useRouter } from 'vue-router';
+import { Finished } from '@element-plus/icons-vue';
+import { ElMessage, ElMessageBox } from 'element-plus';
 import axios from 'axios';
+import my_title from '@/components/my_title.vue';
 const GO_API_URL = import.meta.env.VITE_GO_API_URL;
 
-const showLogin = defineModel('login')
-const username = defineModel('user')
+const username = ref('')
 const password = ref('')
-const emit = defineEmits(['getdata'])
-
+const router = useRouter();
 
 async function login() {
   if (username.value.trim().length == 0) {
@@ -67,8 +71,9 @@ async function login() {
             type: 'success',
             message: `成功注册`,
           })
-          showLogin.value = !showLogin.value
-          emit('getdata');
+          // 成功，写入用户名，及路由
+          sessionStorage.setItem('username', JSON.stringify(username.value));
+          navigateToEdit();
         }
       })
       .catch(() => {
@@ -91,15 +96,53 @@ async function login() {
         type: 'success',
         message: `欢迎回来`,
       })
-      showLogin.value = !showLogin.value
-      emit('getdata');
+      // 成功，写入用户名，及路由
+      sessionStorage.setItem('username', JSON.stringify(username.value));
+      navigateToEdit();
     }
   }
-}
+};
 
+const navigateToEdit = () => {
+  router.push('/edit');
+};
+
+const handleKeydown = (event) => {
+  // 检查是否按下的是 回车
+  if (event.key === 'Enter') {
+    // 阻止默认的剪切板复制行为（可选）
+    event.preventDefault();
+    // 调用保存函数
+    login();
+  }
+};
+
+onMounted(() => {
+  // 在组件挂载时添加事件监听
+  window.addEventListener('keydown', handleKeydown);
+});
+
+onUnmounted(() => {
+  // 在组件卸载时移除事件监听
+  window.removeEventListener('keydown', handleKeydown);
+});
 </script>
 
 <style scoped>
+.loginbox {
+  display: flex;
+  flex-direction: column;
+  /* 改为主轴方向为垂直 */
+  justify-content: center;
+  /* 水平居中 */
+  align-items: center;
+  /* 垂直居中 */
+  height: 80vh;
+  /* 继承自app的视口高度 */
+  width: 100%;
+  /* 宽度也设置为100%，确保内容可以居中 */
+}
+
 .login-container {
   display: flex;
   flex-direction: column;

@@ -17,9 +17,9 @@
     oneDark,
   ];
 
-  const change = (newCode) => {
-    console.log('Code changed:', newCode);
-  };
+  // const change = (newCode) => {
+  //   console.log('Code changed:', newCode);
+  // };
 </script>
 
 <style>
