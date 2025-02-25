@@ -20,7 +20,7 @@
           </el-icon>
         </el-button>
       </div>
-      <emailbox v-model="emailshow"/>
+      <emailbox v-model="emailshow" @close="getcaptcha"/>
     </div>
   </div>
 
@@ -145,7 +145,7 @@ onUnmounted(() => {
 
 <style scoped>
 .background {
-  background-image: url('/u902.jpg');
+  background-image: url('/u9.jpg');
   background-size: cover;
   background-position: center;
   height: 100vh;

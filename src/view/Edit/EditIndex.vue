@@ -1,11 +1,12 @@
+<!-- view/editpanel/index.vue -->
 <template>
   <div class="one-line">
-    <my_avatar v-model="avatar_url" />
+    <my_avatar ref="ref1" v-model="avatar_url" @click="drawer = true" />
     <div>
       <my_title style="margin: 12px 20px 0px 10px;" />
       <div style="color: gray; margin-left: 10px; ">
         &#9824; Recent Update Time: {{ updateTime }}
-        <el-icon class="is-loading" style="font-size: 20px; color: red" @click="navigateToLogin">
+        <el-icon ref="ref2" class="is-loading" style="font-size: 20px; color: red" @click="navigateToLogin">
           <SwitchButton />
         </el-icon>
       </div>
@@ -17,7 +18,7 @@
   </div>
 
   <div class="center">
-    <el-button v-if="!showCtx" @click="editdata" type="primary" round>
+    <el-button ref="ref3" v-if="!showCtx" @click="editdata" type="primary" round>
       编辑<el-icon class="el-icon--right">
         <Edit />
       </el-icon>
@@ -28,29 +29,45 @@
       </el-icon>
     </el-button>
   </div>
+
+  <my_drawer v-model:drawer="drawer" v-model:avatar_url="avatar_url" />
+
+  <el-tour v-model="tour">
+    <el-tour-step :target="ref3?.$el" title="编辑文档" description="Click to edit your document" />
+    <el-tour-step :target="ref1?.$el" title="用户信息" description="Click to edit your information" />
+    <el-tour-step :target="ref2?.$el" title="退出登录" description="Click to log out" />
+  </el-tour>
 </template>
 
 <script setup>
-  import my_avatar from '@/components/my_avatar.vue';
-  import my_title from '@/components/my_title.vue';
-  import VueComposition from '@/components/vue-composition.vue';
-  import { ref, onMounted, onUnmounted } from 'vue';
-  import axios from 'axios';
-  import { Edit, Check } from '@element-plus/icons-vue';
-  import { ElMessage } from 'element-plus';
-  import { useRouter } from 'vue-router';
+import my_title from '@/components/my_title.vue';
+import my_avatar from './components/my_avatar.vue';
+import my_drawer from './components/my_drawer.vue';
+import VueComposition from '@/components/vue-composition.vue';
+import { ref, onMounted, onUnmounted } from 'vue';
+import axios from 'axios';
+import { Edit, Check } from '@element-plus/icons-vue';
+import { ElMessage } from 'element-plus';
+import { useRouter } from 'vue-router';
 
-  const GO_API_URL = import.meta.env.VITE_GO_API_URL;
-  const updateTime = ref('2025/01/05 23:42');
-  const userdata = ref('# Tech Stack');
-  var tempuserdata = '';
-  const username = ref(JSON.parse(sessionStorage.getItem('username')))
-  const password = ref(JSON.parse(sessionStorage.getItem('password')))
-  const showCtx = ref(false);
+const GO_API_URL = import.meta.env.VITE_GO_API_URL;
 
-  const avatar_url = ref('');
+const updateTime = ref('2025/01/05 23:42');
+const userdata = ref('# Tech Stack');
+var tempuserdata = '';
+const username = ref(JSON.parse(sessionStorage.getItem('username')));
+const password = ref(JSON.parse(sessionStorage.getItem('password')));
+const showCtx = ref(false);
+const avatar_url = ref('');
 
-  const router = useRouter();
+const ref1 = ref(null); // 引用 VueComposition 组件实例
+const ref2 = ref(null);
+const ref3 = ref(null);
+const tour = ref(true); // 控制 Tour 的显示与隐藏
+
+const drawer = ref(false);
+
+const router = useRouter();
 
   const navigateToLogin = () => {
     sessionStorage.removeItem('username');

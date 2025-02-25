@@ -1,11 +1,14 @@
 <!-- upload_avatar.vue -->
 <template>
+
   <el-upload class="avatar-uploader" :action="GO_API_URL + '/upload'" name="ufile" :data=data :show-file-list="false"
     :on-success="handleAvatarSuccess" :before-upload="beforeAvatarUpload">
-    <img v-if="imageUrl" :src="imageUrl" class="avatar" />
-    <el-icon v-else class="avatar-uploader-icon">
-      <Plus />
-    </el-icon>
+    <el-tooltip content="点击修改头像" placement="bottom" effect="customized">
+      <img v-if="imageUrl" :src="imageUrl" class="avatar" />
+      <el-icon v-else class="avatar-uploader-icon">
+        <Plus />
+      </el-icon>
+    </el-tooltip>
   </el-upload>
 </template>
 
@@ -73,5 +76,16 @@ const beforeAvatarUpload = (rawFile) => {
   width: 100px;
   height: 100px;
   text-align: center;
+}
+
+.el-popper.is-customized {
+  /* Set padding to ensure the height is 32px */
+  padding: 6px 12px;
+  background: linear-gradient(90deg, rgb(159, 229, 151), rgb(204, 229, 129));
+}
+
+.el-popper.is-customized .el-popper__arrow::before {
+  background: linear-gradient(45deg, #b2e68d, #bce689);
+  right: 0;
 }
 </style>
