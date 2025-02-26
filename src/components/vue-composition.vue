@@ -41,7 +41,7 @@ onUpdated(update);
   /* 使用 Flexbox 布局 */
   justify-content: space-between;
   /* 使子元素在主轴上两端对齐 */
-  width: 100%;
+  width: 90%;
   /* 确保容器宽度占满父元素 */
   align-items: center;
   /* 使子元素在交叉轴上居中对齐 */
