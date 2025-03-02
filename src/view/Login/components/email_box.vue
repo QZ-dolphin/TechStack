@@ -87,6 +87,7 @@ async function getVerifyCode() {
       type: 'error',
       message: `邮箱地址不正确，请重新输入！`,
     });
+    isCounting.value = false;
     return;
   }
   leftTime.value = response.data.ttl;

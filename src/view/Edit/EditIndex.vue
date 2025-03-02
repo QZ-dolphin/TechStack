@@ -72,8 +72,23 @@
 
   const router = useRouter();
 
+  function tour_set() {
+    let temp_tour = sessionStorage.getItem('tour');
+    if(!temp_tour){
+      tour.value = true;
+      sessionStorage.setItem('tour', true);
+      return;
+    }
+    else {
+      tour.value = false;
+      return;
+    }
+
+  };
+
   const navigateToLogin = () => {
     sessionStorage.removeItem('username');
+    sessionStorage.removeItem('password');
     router.push('/');
   };
 
@@ -147,6 +162,7 @@
 
   onMounted(() => {
     fetchdate();
+    tour_set();
     // 在组件挂载时添加事件监听
     window.addEventListener('keydown', handleKeydown);
   });
